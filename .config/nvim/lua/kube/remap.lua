@@ -7,6 +7,9 @@ nnoremap("<leader>fg", "<cmd>Telescope live_grep<cr>")
 nnoremap("<leader>fb", "<cmd>Telescope file_browser<cr>")
 nnoremap("<leader>fh", "<cmd>Telescope help_tags<cr>")
 
+-- Git
+nnoremap("<leader>gd", "<cmd>Gitsigns preview_hunk_inline<cr>")
+
 -- Copy current path
 nnoremap("<leader>cp", '<cmd>let @+ = expand("%")<cr>')
 

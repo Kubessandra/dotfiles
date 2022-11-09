@@ -48,6 +48,11 @@ return require('packer').startup(function()
           { "glepnir/lspsaga.nvim", branch = "main" },
       }
   }
+  use 'jose-elias-alvarez/null-ls.nvim'
   use { 'nvim-treesitter/nvim-treesitter' }
   use 'JoosepAlviste/nvim-ts-context-commentstring'
+  use 'windwp/nvim-ts-autotag'
+
+  -- Git
+  use 'lewis6991/gitsigns.nvim'
 end)
