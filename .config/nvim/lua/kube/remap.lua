@@ -18,3 +18,4 @@ nnoremap("<leader>w", "<C-w>")
 
 -- buffers
 nnoremap("<leader>2", "<C-^>")
+nnoremap("<leader>oo", "<cmd>:lua vim.lsp.buf.format({ timeout = 3000 })<cr>")
