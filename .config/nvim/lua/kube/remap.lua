@@ -6,6 +6,8 @@ nnoremap("<leader>ff", "<cmd>Telescope find_files hidden=true<cr>")
 nnoremap("<leader>fg", "<cmd>Telescope live_grep<cr>")
 nnoremap("<leader>fb", "<cmd>Telescope file_browser<cr>")
 nnoremap("<leader>fh", "<cmd>Telescope help_tags<cr>")
+nnoremap("<leader>cff", "<cmd>Telescope find_files cwd=%:p:h<cr>")
+nnoremap("<leader>cfb", "<cmd>Telescope file_browser path=%:p:h<cr>")
 
 -- Git
 nnoremap("<leader>gd", "<cmd>Gitsigns preview_hunk_inline<cr>")
