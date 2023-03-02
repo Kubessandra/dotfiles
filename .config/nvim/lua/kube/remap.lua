@@ -19,5 +19,7 @@ nnoremap("<leader>cp", '<cmd>let @+ = expand("%")<cr>')
 nnoremap("<leader>w", "<C-w>")
 
 -- buffers
+nnoremap("<leader>p", "<cmd>:bp<cr>")
+nnoremap("<leader>n", "<cmd>:bn<cr>")
 nnoremap("<leader>2", "<C-^>")
 nnoremap("<leader>oo", "<cmd>:lua vim.lsp.buf.format({ timeout = 3000 })<cr>")

@@ -19,6 +19,14 @@ return require("packer").startup(function()
 		},
 	})
 
+	-- Buffer handling
+	use({
+		"crispgm/nvim-tabline",
+		config = function()
+			require("tabline").setup({})
+		end,
+	})
+
 	-- Bar
 	use({
 		"nvim-lualine/lualine.nvim",
@@ -26,6 +34,8 @@ return require("packer").startup(function()
 	})
 
 	use("tpope/vim-commentary")
+
+	use("github/copilot.vim")
 
 	-- Auto complete
 	use({
@@ -61,14 +71,6 @@ return require("packer").startup(function()
 			{ "nvim-lua/plenary.nvim" },
 			{ "nvim-treesitter/nvim-treesitter" },
 		},
-	})
-
-	use({
-		"themaxmarchuk/tailwindcss-colors.nvim",
-		module = "tailwindcss-colors",
-		config = function()
-			require("tailwindcss-colors").setup()
-		end,
 	})
 
 	-- Git

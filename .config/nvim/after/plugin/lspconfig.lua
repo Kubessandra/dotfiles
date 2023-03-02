@@ -3,7 +3,7 @@ local cmp = require("cmp")
 local keymap = vim.keymap.set
 local saga = require("lspsaga")
 
-saga.init_lsp_saga({
+saga.setup({
 	code_action_lightbulb = {
 		enable = false,
 	},
@@ -77,9 +77,6 @@ local function server_setup(server, opts)
 		keymap("n", "gl", vim.diagnostic.open_float, bufopts)
 		keymap("n", "[d", vim.diagnostic.goto_prev, bufopts)
 		keymap("n", "]d", vim.diagnostic.goto_next, bufopts)
-		if server == "tailwindcss" then
-			require("tailwindcss-colors").buf_attach(bufnr)
-		end
 	end
 
 	opts.capabilities = require("cmp_nvim_lsp").default_capabilities()
