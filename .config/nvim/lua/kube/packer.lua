@@ -63,6 +63,7 @@ return require("packer").startup(function()
 	use({ "nvim-treesitter/nvim-treesitter" })
 	use("JoosepAlviste/nvim-ts-context-commentstring")
 	use("windwp/nvim-ts-autotag")
+  use('nvim-tree/nvim-web-devicons')
 
 	-- Code Actions
 	use({
