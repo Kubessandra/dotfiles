@@ -39,31 +39,34 @@ return require("packer").startup(function()
 
 	-- Auto complete
 	use({
-		"williamboman/mason.nvim",
+		"VonHeikemen/lsp-zero.nvim",
+		branch = "v1.x",
 		requires = {
-			-- LSP
+			-- LSP Support
 			{ "neovim/nvim-lspconfig" },
 			{ "williamboman/mason.nvim" },
 			{ "williamboman/mason-lspconfig.nvim" },
 
-			-- Snippet
-			{ "hrsh7th/cmp-vsnip" },
-			{ "hrsh7th/vim-vsnip" },
-
-			-- AutoComplete
+			-- Autocompletion
 			{ "hrsh7th/nvim-cmp" },
 			{ "hrsh7th/cmp-nvim-lsp" },
 			{ "hrsh7th/cmp-buffer" },
 			{ "hrsh7th/cmp-path" },
+			{ "saadparwaiz1/cmp_luasnip" },
 			{ "hrsh7th/cmp-cmdline" },
-			{ "glepnir/lspsaga.nvim", branch = "main" },
+			{ "hrsh7th/cmp-nvim-lua" },
+
+			-- Snippets
+			{ "L3MON4D3/LuaSnip" },
+			{ "rafamadriz/friendly-snippets" },
 		},
 	})
+	use({ "glepnir/lspsaga.nvim", branch = "main" })
 	use("jose-elias-alvarez/null-ls.nvim")
 	use({ "nvim-treesitter/nvim-treesitter" })
 	use("JoosepAlviste/nvim-ts-context-commentstring")
 	use("windwp/nvim-ts-autotag")
-  use('nvim-tree/nvim-web-devicons')
+	use("nvim-tree/nvim-web-devicons")
 
 	-- Code Actions
 	use({

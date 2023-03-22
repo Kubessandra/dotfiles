@@ -1,6 +1,7 @@
 local cmp = require("cmp")
 
 local keymap = vim.keymap.set
+
 local saga = require("lspsaga")
 
 saga.setup({
@@ -9,12 +10,13 @@ saga.setup({
 	},
 })
 
+local lsp = require('lsp-zero')
+lsp.preset('recommended')
+
+-- (Optional) Configure lua language server for neovim
+lsp.nvim_workspace()
+
 cmp.setup({
-	snippet = {
-		expand = function(args)
-			vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` users.
-		end,
-	},
 	formatting = {
 		format = function(entry, vim_item)
 			local prefix = entry.source.name
@@ -26,7 +28,9 @@ cmp.setup({
 		completion = cmp.config.window.bordered(),
 		documentation = cmp.config.window.bordered(),
 	},
-	mapping = cmp.mapping.preset.insert({
+})
+
+local cmp_mappings = lsp.defaults.cmp_mappings({
 		["<C-Space>"] = cmp.mapping.complete(),
 		["<C-e>"] = cmp.mapping.abort(),
 		["<CR>"] = cmp.mapping.confirm({ select = true }),
@@ -37,33 +41,13 @@ cmp.setup({
 				fallback()
 			end
 		end),
-	}),
-	sources = cmp.config.sources({
-		{ name = "nvim_lsp" },
-		{ name = "vsnip" },
-		{ name = "buffer" },
-		{ name = "path" },
-	}),
 })
 
-cmp.setup.cmdline(":", {
-	sources = {
-		{ name = "cmdline" },
-	},
+lsp.setup_nvim_cmp({
+  mapping = cmp_mappings
 })
 
-cmp.setup.cmdline("/", {
-	sources = {
-		{ name = "buffer" },
-	},
-})
-
-local function server_setup(server, opts)
-	opts = opts or {}
-
-	opts.on_attach = function(client, bufnr)
-		-- Mappings.
-		-- See `:help vim.lsp.*` for documentation on any of the below functions
+lsp.on_attach(function(client, bufnr)
 		local bufopts = { noremap = true, silent = true, buffer = bufnr }
 		keymap("n", "gD", vim.lsp.buf.declaration, bufopts)
 		keymap("n", "gd", vim.lsp.buf.definition, bufopts)
@@ -77,15 +61,21 @@ local function server_setup(server, opts)
 		keymap("n", "gl", vim.diagnostic.open_float, bufopts)
 		keymap("n", "[d", vim.diagnostic.goto_prev, bufopts)
 		keymap("n", "]d", vim.diagnostic.goto_next, bufopts)
-	end
+end)
 
-	opts.capabilities = require("cmp_nvim_lsp").default_capabilities()
+lsp.setup();
 
-	local lspconfig = require("lspconfig")
-	lspconfig[server].setup(opts)
-end
+cmp.setup.cmdline(":", {
+	sources = {
+		{ name = "cmdline" },
+	},
+})
 
--- require("lspconfig").relay_lsp.setup({})
+cmp.setup.cmdline("/", {
+	sources = {
+		{ name = "buffer" },
+	},
+})
 
 -- LSP Settings
 vim.diagnostic.config({
@@ -112,12 +102,4 @@ vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
 
 vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
 	border = "rounded",
-})
-
-require("mason").setup({})
-require("mason-lspconfig").setup({})
-require("mason-lspconfig").setup_handlers({
-	function(name)
-		server_setup(name, {})
-	end,
 })
