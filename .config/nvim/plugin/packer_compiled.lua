@@ -229,6 +229,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/aymeric/.local/share/nvim/site/pack/packer/start/vim-commentary",
     url = "https://github.com/tpope/vim-commentary"
+  },
+  ["vim-startuptime"] = {
+    loaded = true,
+    path = "/Users/aymeric/.local/share/nvim/site/pack/packer/start/vim-startuptime",
+    url = "https://github.com/dstein64/vim-startuptime"
   }
 }
 

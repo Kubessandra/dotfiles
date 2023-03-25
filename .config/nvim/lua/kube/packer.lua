@@ -63,7 +63,7 @@ return require("packer").startup(function()
 	})
 	use({ "glepnir/lspsaga.nvim", branch = "main" })
 	use("jose-elias-alvarez/null-ls.nvim")
-	use({ "nvim-treesitter/nvim-treesitter" })
+	use({ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" })
 	use("JoosepAlviste/nvim-ts-context-commentstring")
 	use("windwp/nvim-ts-autotag")
 	use("nvim-tree/nvim-web-devicons")
@@ -79,4 +79,7 @@ return require("packer").startup(function()
 
 	-- Git
 	use("lewis6991/gitsigns.nvim")
+
+  -- profiler
+  use("dstein64/vim-startuptime")
 end)

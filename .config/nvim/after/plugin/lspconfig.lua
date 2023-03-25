@@ -15,19 +15,9 @@ lsp.preset('recommended')
 
 -- (Optional) Configure lua language server for neovim
 lsp.nvim_workspace()
-
-cmp.setup({
-	formatting = {
-		format = function(entry, vim_item)
-			local prefix = entry.source.name
-			vim_item.menu = prefix
-			return vim_item
-		end,
-	},
-	window = {
-		completion = cmp.config.window.bordered(),
-		documentation = cmp.config.window.bordered(),
-	},
+lsp.ensure_installed({
+  'tsserver',
+  'rust_analyzer',
 })
 
 local cmp_mappings = lsp.defaults.cmp_mappings({
@@ -44,7 +34,18 @@ local cmp_mappings = lsp.defaults.cmp_mappings({
 })
 
 lsp.setup_nvim_cmp({
-  mapping = cmp_mappings
+  mapping = cmp_mappings,
+  formatting = {
+    format = function(entry, vim_item)
+      local prefix = entry.source.name
+      vim_item.menu = prefix
+      return vim_item
+    end,
+  },
+	window = {
+		completion = cmp.config.window.bordered(),
+		documentation = cmp.config.window.bordered(),
+	},
 })
 
 lsp.on_attach(function(client, bufnr)
@@ -93,6 +94,7 @@ vim.diagnostic.config({
 		prefix = "",
 	},
 })
+
 -- Auto complete
 vim.opt.completeopt = { "menu", "menuone", "noselect" }
 
