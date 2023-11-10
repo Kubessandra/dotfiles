@@ -11,14 +11,9 @@ saga.setup({
 })
 
 local lsp = require('lsp-zero')
-lsp.preset('recommended')
 
--- (Optional) Configure lua language server for neovim
-lsp.nvim_workspace()
-lsp.ensure_installed({
-  'tsserver',
-  'rust_analyzer',
-})
+local lua_opts = lsp.nvim_lua_ls()
+require('lspconfig').lua_ls.setup(lua_opts)
 
 local cmp_mappings = lsp.defaults.cmp_mappings({
 		["<C-Space>"] = cmp.mapping.complete(),
@@ -33,7 +28,8 @@ local cmp_mappings = lsp.defaults.cmp_mappings({
 		end),
 })
 
-lsp.setup_nvim_cmp({
+local cmp_format = require('lsp-zero').cmp_format()
+cmp.setup({
   mapping = cmp_mappings,
   formatting = {
     format = function(entry, vim_item)
@@ -41,6 +37,17 @@ lsp.setup_nvim_cmp({
       vim_item.menu = prefix
       return vim_item
     end,
+  },
+  sources = {
+    {name = 'path'},
+    {name = 'nvim_lsp'},
+    {name = 'nvim_lua'},
+    {name = 'buffer', keyword_length = 3},
+    {name = 'luasnip', keyword_length = 2},
+  },
+  preselect = 'item',
+  completion = {
+    completeopt = 'menu,menuone,noinsert',
   },
 	window = {
 		completion = cmp.config.window.bordered(),
@@ -58,13 +65,11 @@ lsp.on_attach(function(client, bufnr)
 		keymap("n", "<space>D", vim.lsp.buf.type_definition, bufopts)
 		keymap("n", "<space>rn", "<cmd>Lspsaga rename<cr>", bufopts)
 		keymap("n", "<space>ca", "<cmd>Lspsaga code_action<cr>", bufopts)
-		keymap("n", "<space>gh", "<cmd>Lspsaga lsp_finder<cr>", bufopts)
+		keymap("n", "<space>gh", "<cmd>Lspsaga finder<cr>", bufopts)
 		keymap("n", "gl", vim.diagnostic.open_float, bufopts)
 		keymap("n", "[d", vim.diagnostic.goto_prev, bufopts)
 		keymap("n", "]d", vim.diagnostic.goto_next, bufopts)
 end)
-
-lsp.setup();
 
 cmp.setup.cmdline(":", {
 	sources = {
@@ -78,21 +83,23 @@ cmp.setup.cmdline("/", {
 	},
 })
 
--- LSP Settings
+lsp.set_sign_icons({
+  error = '✘',
+  warn = '▲',
+  hint = '⚑',
+  info = ''
+})
+
 vim.diagnostic.config({
-	virtual_text = true,
-	signs = true,
-	update_in_insert = false,
-	underline = true,
-	severity_sort = true,
-	float = {
-		focusable = false,
-		style = "minimal",
-		border = "rounded",
-		source = "always",
-		header = "",
-		prefix = "",
-	},
+  virtual_text = false,
+  severity_sort = true,
+  float = {
+    style = 'minimal',
+    border = 'rounded',
+    source = 'always',
+    header = '',
+    prefix = '',
+  },
 })
 
 -- Auto complete
@@ -104,4 +111,12 @@ vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
 
 vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
 	border = "rounded",
+})
+
+require('mason').setup({})
+require('mason-lspconfig').setup({
+  ensure_installed = {'tsserver', 'rust_analyzer'},
+  handlers = {
+    lsp.default_setup,
+  }
 })

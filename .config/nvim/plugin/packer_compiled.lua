@@ -159,6 +159,16 @@ _G.packer_plugins = {
     path = "/Users/aymeric/.local/share/nvim/site/pack/packer/start/nvim-cmp",
     url = "https://github.com/hrsh7th/nvim-cmp"
   },
+  ["nvim-dap"] = {
+    loaded = true,
+    path = "/Users/aymeric/.local/share/nvim/site/pack/packer/start/nvim-dap",
+    url = "https://github.com/mfussenegger/nvim-dap"
+  },
+  ["nvim-dap-ui"] = {
+    loaded = true,
+    path = "/Users/aymeric/.local/share/nvim/site/pack/packer/start/nvim-dap-ui",
+    url = "https://github.com/rcarriga/nvim-dap-ui"
+  },
   ["nvim-lspconfig"] = {
     loaded = true,
     path = "/Users/aymeric/.local/share/nvim/site/pack/packer/start/nvim-lspconfig",
@@ -200,11 +210,6 @@ _G.packer_plugins = {
     path = "/Users/aymeric/.local/share/nvim/site/pack/packer/start/plenary.nvim",
     url = "https://github.com/nvim-lua/plenary.nvim"
   },
-  ["refactoring.nvim"] = {
-    loaded = true,
-    path = "/Users/aymeric/.local/share/nvim/site/pack/packer/start/refactoring.nvim",
-    url = "https://github.com/ThePrimeagen/refactoring.nvim"
-  },
   ["telescope-file-browser.nvim"] = {
     loaded = true,
     path = "/Users/aymeric/.local/share/nvim/site/pack/packer/start/telescope-file-browser.nvim",
@@ -229,11 +234,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/aymeric/.local/share/nvim/site/pack/packer/start/vim-commentary",
     url = "https://github.com/tpope/vim-commentary"
-  },
-  ["vim-startuptime"] = {
-    loaded = true,
-    path = "/Users/aymeric/.local/share/nvim/site/pack/packer/start/vim-startuptime",
-    url = "https://github.com/dstein64/vim-startuptime"
   }
 }
 

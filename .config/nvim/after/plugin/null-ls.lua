@@ -7,10 +7,9 @@ local code_actions = require("null-ls").builtins.code_actions
 
 require("null-ls").setup({
 	sources = {
-		diagnostics.eslint,
+		diagnostics.eslint_d,
 		formatting.prettierd,
-		formatting.stylua,
     code_actions.refactoring,
-    code_actions.eslint,
+    code_actions.eslint_d,
 	},
 })

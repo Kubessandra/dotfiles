@@ -40,7 +40,7 @@ return require("packer").startup(function()
 	-- Auto complete
 	use({
 		"VonHeikemen/lsp-zero.nvim",
-		branch = "v1.x",
+		branch = "v3.x",
 		requires = {
 			-- LSP Support
 			{ "neovim/nvim-lspconfig" },
@@ -69,17 +69,17 @@ return require("packer").startup(function()
 	use("nvim-tree/nvim-web-devicons")
 
 	-- Code Actions
-	use({
-		"ThePrimeagen/refactoring.nvim",
-		requires = {
-			{ "nvim-lua/plenary.nvim" },
-			{ "nvim-treesitter/nvim-treesitter" },
-		},
-	})
+	-- use({
+	-- 	"ThePrimeagen/refactoring.nvim",
+	-- 	requires = {
+	-- 		{ "nvim-lua/plenary.nvim" },
+	-- 		{ "nvim-treesitter/nvim-treesitter" },
+	-- 	},
+	-- })
 
 	-- Git
 	use("lewis6991/gitsigns.nvim")
 
-  -- profiler
-  use("dstein64/vim-startuptime")
+  -- debugger
+  use { "rcarriga/nvim-dap-ui", requires = {"mfussenegger/nvim-dap"} }
 end)
