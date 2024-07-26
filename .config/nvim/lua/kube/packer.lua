@@ -61,6 +61,8 @@ return require("packer").startup(function()
 			{ "rafamadriz/friendly-snippets" },
 		},
 	})
+
+  use('towolf/vim-helm')
 	use({ "glepnir/lspsaga.nvim", branch = "main" })
 	use("jose-elias-alvarez/null-ls.nvim")
 	use({ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" })
@@ -81,5 +83,5 @@ return require("packer").startup(function()
 	use("lewis6991/gitsigns.nvim")
 
   -- debugger
-  use { "rcarriga/nvim-dap-ui", requires = {"mfussenegger/nvim-dap"} }
+  use { "rcarriga/nvim-dap-ui", requires = {"mfussenegger/nvim-dap", "nvim-neotest/nvim-nio"} }
 end)

@@ -10,7 +10,8 @@ require'nvim-treesitter.configs'.setup {
     enable = true,
   },
   context_commentstring = {
-    enable = true
+    enable = false
   }
 }
 
+require'ts_context_commentstring'.setup {}

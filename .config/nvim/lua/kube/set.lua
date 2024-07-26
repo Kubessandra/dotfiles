@@ -17,3 +17,4 @@ vim.opt.smartindent = true
 vim.opt.wrap = false
 
 vim.g.mapleader = " "
+vim.g.skip_ts_context_commentstring_module = true

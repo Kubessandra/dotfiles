@@ -13,7 +13,17 @@ saga.setup({
 local lsp = require('lsp-zero')
 
 local lua_opts = lsp.nvim_lua_ls()
-require('lspconfig').lua_ls.setup(lua_opts)
+local lspconfig = require('lspconfig')
+lspconfig.lua_ls.setup(lua_opts)
+lspconfig.helm_ls.setup {
+  settings = {
+    ['helm-ls'] = {
+      yamlls = {
+        path = "yaml-language-server",
+      }
+    }
+  }
+}
 
 local cmp_mappings = lsp.defaults.cmp_mappings({
 		["<C-Space>"] = cmp.mapping.complete(),
